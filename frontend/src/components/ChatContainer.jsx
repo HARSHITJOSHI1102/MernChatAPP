@@ -8,7 +8,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import { formatMessageTime } from "../lib/utils";
 
 const ChatContainer = () => {
-  const { 
+  const {
     messages,
     getMessages,
     isMessagesLoading,
@@ -30,7 +30,7 @@ const ChatContainer = () => {
   useEffect(() => {
     if (messageEndRef.current && messages) {
       messageEndRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+    } // scrolled down if message changes 
   }, [messages]);
 
   if (isMessagesLoading) {
