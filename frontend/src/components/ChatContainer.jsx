@@ -8,7 +8,7 @@ import { useAuthStore } from "../store/useAuthStore";
 import { formatMessageTime } from "../lib/utils";
 
 const ChatContainer = () => {
-  const {
+  const { 
     messages,
     getMessages,
     isMessagesLoading,
