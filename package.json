@@ -1,0 +1,22 @@
+{
+  "name": "mernchatapp",
+  "version": "1.0.0",
+  "description": "Useful Chat App",
+  "main": "index.js",
+  "scripts": {
+    "build":"",
+    "start": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HARSHITJOSHI1102/MernChatAPP.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/HARSHITJOSHI1102/MernChatAPP/issues"
+  },
+  "homepage": "https://github.com/HARSHITJOSHI1102/MernChatAPP#readme"
+}
