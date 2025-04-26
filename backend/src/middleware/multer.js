@@ -1,7 +1,6 @@
-import multer, { memoryStorage } from "multer"
-import path from "path"
+import multer from "multer"
 
-const storage  = multer.memoryStorage
+const storage  = multer.memoryStorage();
 
 const upload = multer({
     storage: storage,
