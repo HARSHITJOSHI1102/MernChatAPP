@@ -1,6 +1,5 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
-
 import cloudinary from "../lib/cloudinary.js";
 import { getReceiverSocketId, io } from "../lib/socket.js";
 
@@ -8,7 +7,6 @@ export const getUsersForSidebar = async (req, res) => {
   try {
     const loggedInUserId = req.user._id;
     const filteredUsers = await User.find({ _id: { $ne: loggedInUserId } }).select("-password");
-
     res.status(200).json(filteredUsers);
   } catch (error) {
     console.error("Error in getUsersForSidebar: ", error.message);
@@ -41,11 +39,23 @@ export const sendMessage = async (req, res) => {
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
 
-    let imageUrl;
-    if (image) {
-      // Upload base64 image to cloudinary
-      const uploadResponse = await cloudinary.uploader.upload(image);
-      imageUrl = uploadResponse.secure_url;
+    let imageUrl = null;
+    if (req.file) {
+      // Upload image to Cloudinary
+      const result = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          { resource_type: 'image' },
+          (error, result) => {
+            if (error) {
+              reject(new Error('Image upload failed'));
+            } else {
+              resolve(result);
+            }
+          }
+        );
+        stream.end(req.file.buffer);
+      });
+      imageUrl = result.secure_url;
     }
 
     const newMessage = new Message({
