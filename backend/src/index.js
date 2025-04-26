@@ -17,8 +17,9 @@ const __dirname = path.resolve();
 app.use(express.json());
 app.use(cookieParser());
 
-app.use(bodyParser.json({limit:'10mb'}));
-app.use(bodyParser.urlencoded({limit:"10mb",extended:true}));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+
 
 app.use(
   cors({
